@@ -29,11 +29,11 @@ weight를 비교할 수 있는 cmp 함수 필요
 int n, m, a, b, c;
 vector< pair<int, pair<int, int>>> map;
 int parent[1001];
-int find(int a) {
+int find(int a) { // parent에서 자신과 연결된 상위 값을 찾습니다.
 	if (parent[a] == a) return a;
 	else return parent[a] = find(parent[a]);
 }
-void _union(int a, int b) {
+void _union(int a, int b) { // 두 집합을 상위 값의 형태로 합합니다.
 	int x = find(a);
 	int y = find(b);
 	if (x > y) {
@@ -50,12 +50,12 @@ int main() {
 	
 	int total = 0;
 	cin >> n >> m;
-	for (int i = 0; i <= n; i++) parent[i] = i;
+	for (int i = 0; i <= n; i++) parent[i] = i; // parent 배열을 초기화합니다.
 	for (int i = 0; i < m; i++) {
 		cin >> a >> b >> c;
 		map.push_back({ c,{a,b} });
 	}
-	sort(map.begin(), map.end());
+	sort(map.begin(), map.end()); // pair의 제일 앞의 값 (weight)를 기준으로 정렬합니다.
 	// for (auto x : map) cout << x.first << endl;
 	for (int i = 0; i < map.size(); i++) {
 		int val = map[i].first;
