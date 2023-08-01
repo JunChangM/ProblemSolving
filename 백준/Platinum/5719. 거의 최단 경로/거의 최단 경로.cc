@@ -71,6 +71,10 @@ int main() {
 			rev[v].push_back({ p,u });
 		}
 		dijk();
+		//dist [d]가 되는 값을 dfs에서 찾기에는 비용이 너무 많이 걸림
+		// dist[d] 기준으로 반대로 접근하였을 때, dist[x] = dist[d] - cost 라면 최단 경로에 포함된다.
+		// 반대 방향에 대한 배열도 필요?
+		// 지나온 길 제거해주고 dijk() 하면 dist[d]가 답.
 		bfs();
 		dijk();
 
@@ -80,3 +84,11 @@ int main() {
 	return 0;
 }
 
+/*
+2 1
+1 0
+0 1 5
+2 2
+1 0
+0 1 5
+1 0 5*/
