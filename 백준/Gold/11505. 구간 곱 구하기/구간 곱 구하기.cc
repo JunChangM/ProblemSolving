@@ -8,20 +8,7 @@ long long init(int node, int start, int end) {
 	if (start == end) return tree[node] = input[start];
 	return tree[node] = (init(node * 2, start, (start + end)/2) * init(node * 2 + 1, (start + end)/2 + 1, end)) % div;
 }
-/*
-* div로 나눠버린 수에 대하여 다시 값을 변경하려고 할 때, 나눠지지 않는 경우를 처리하려고 while문을 사용을 했다.
-* 하지만 이 경우 매우 큰 비용을 발생시키기 때문에 아래부터 다시 올라오며 업데이트하는 것이 더 바랍직하다.
-*/ 
-void update(int node, int start, int end, int target, int old, int newthing) {
-	if (target < start || end < target) return;
-	if (start == end) {
-		tree[node] = newthing;
-		return;
-	}
-	update(node * 2, start, (start + end)/2, target, old, newthing);
-	update(node * 2 + 1, (start + end)/2 + 1, end, target, old, newthing);
-	tree[node] = tree[node * 2] * tree[node * 2 + 1] % div;
-}
+
 long long update0(int node, int start, int end, int target) {
 	if (target < start || end < target) return tree[node];
 	if (start == target && target == end) {
@@ -46,10 +33,8 @@ int main() {
 		cin >> a >> b >> c;
 		if (a == 1) { // b 번재  수를  c 로 바꾸기
 			b--;
-			int temp = input[b];
 			input[b] = c;
-			if (temp == 0) update0(1, 0, n - 1, b);
-			else update(1, 0, n - 1, b, temp , c);
+			update0(1, 0, n - 1, b);
 		}
 		else { // b 부터 c 까지의 곱 출력
 			b--;
