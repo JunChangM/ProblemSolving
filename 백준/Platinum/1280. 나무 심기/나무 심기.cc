@@ -1,8 +1,8 @@
 #include <iostream>
-
 #define div 1000000007
 #define N 200000
 using namespace std;
+int a, n;
 pair<long long,long long> tree[N * 4];
 void update(int node, int start, int end, int index) {
 	if (start <= index && index <= end) {
@@ -23,18 +23,11 @@ pair<long long, long long> find(int node, int start, int end, int left, int righ
 int main() {
 	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 	long long ans = 1;
-	int a;
-	int n;
-
 	cin >> n;
-	if (n >= 1) {
-		cin >> a;
-		update(1, 0, N, a);
-
-	}
+	cin >> a;
+	update(1, 0, N, a);
 	for (int i = 2; i <= n; i++) {
 		cin >> a;
-
 		pair<long long, long long> leftx = find(1, 0, N, 0, a - 1);
 		pair<long long, long long> rightx = find(1, 0, N, a + 1, N);
 		update(1, 0, N, a);
