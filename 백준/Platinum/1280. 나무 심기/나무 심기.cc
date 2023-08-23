@@ -1,5 +1,5 @@
 #include <iostream>
-#include <set>
+
 #define div 1000000007
 #define N 200000
 using namespace std;
@@ -25,24 +25,22 @@ int main() {
 	long long ans = 1;
 	int a;
 	int n;
-	set<int> st;
+
 	cin >> n;
 	if (n >= 1) {
 		cin >> a;
 		update(1, 0, N, a);
-		st.insert(a);
+
 	}
 	for (int i = 2; i <= n; i++) {
 		cin >> a;
-		st.insert(a);
+
 		pair<long long, long long> leftx = find(1, 0, N, 0, a - 1);
 		pair<long long, long long> rightx = find(1, 0, N, a + 1, N);
 		update(1, 0, N, a);
 		long long temp = abs(leftx.first * a - leftx.second) + abs(rightx.first *  a - rightx.second);
-		if (temp == 0) continue;
 		ans = (ans * (temp % div)) % div;
 	}
-	if (st.size() == 1) cout << 0;
-	else cout << ans;
+	cout << ans;
 	return 0;
 }
