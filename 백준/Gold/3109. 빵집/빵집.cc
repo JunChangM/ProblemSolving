@@ -1,64 +1,29 @@
-#include<iostream>
- 
-#define endl "\n"
-#define MAX 10000
+#include <iostream>
 using namespace std;
- 
-int R, C, Answer;
-char MAP[MAX][500];
-bool Visit[MAX][500];
-bool Ans;
- 
-int dx[] = { -1, 0, 1 };
-int dy[] = { 1, 1, 1, };
-
-void DFS(int x, int y)
-{
-    Visit[x][y] = true;
-    if (y == C - 1)
-    {
-        Ans = true;
-        Answer++;
-        return;
-    }
- 
-    for (int i = 0; i < 3; i++)
-    {
-        int nx = x + dx[i];
-        int ny = y + dy[i];
- 
-        if (nx >= 0 && ny >= 0 && nx < R && ny < C)
-        {
-            if (MAP[nx][ny] == '.' && Visit[nx][ny] == false)
-            {
-                DFS(nx, ny);
-                if (Ans == true) return;
-            }
-        }
-    }
+int n, m;
+int dx[3] = { -1,0,1 };
+int dy[3] = { 1,1,1 };
+char input[10001][501];
+bool dfs(int x, int y) {
+	input[x][y] = 'x';
+	if (y == m - 1) {
+		return true;
+	}
+	for (int i = 0; i < 3; i++) {
+		int nx = x + dx[i];
+		int ny = y + dy[i];
+		if (nx < 0 || ny < 0 || nx >= n || ny >= m || input[nx][ny] == 'x') continue;
+		if (dfs(nx, ny)) return true;
+	}
+	return false;
 }
 
-int main(void)
-{
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-
-    cin >> R >> C;
-    for (int i = 0; i < R; i++)
-    {
-        for (int j = 0; j < C; j++)
-        {
-            cin >> MAP[i][j];
-        }
-    }
-    
-    for (int i = 0; i < R; i++)
-    {
-        Ans = false;
-        DFS(i, 0);
-    }
-    cout << Answer << endl;
- 
-    return 0;
+int main() {
+	ios_base::sync_with_stdio(0); cout.tie(0); cin.tie(0);
+	cin >> n >> m;
+	for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) cin >> input[i][j];
+	int ans = 0;
+	for (int i = 0; i < n; i++) if (dfs(i, 0)) ans++;
+	cout << ans;
+	return 0;
 }
