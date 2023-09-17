@@ -1,8 +1,7 @@
 #include <iostream>
 using namespace std;
-int x, n, c;
-long long s, t;
-long long input[250001];
+int x, n, c, s, t;
+int input[250001];
 int main() {
 	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 	cin >> n >> x;
@@ -21,7 +20,6 @@ int main() {
 		}
 		else if (t == s)c++;
 	}
-
 	if (s == 0) cout << "SAD";
 	else cout << s << "\n" << c;
 	return 0;
