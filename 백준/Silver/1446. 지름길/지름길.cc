@@ -6,20 +6,21 @@ using namespace std;
 int n, d, a, b, c;
 int dist[INF];
 vector <pair<int, int>> map[INF];
-void dijk(int start) {
+void dijk() {
 	priority_queue < pair<int, int> > pq;
-	pq.push({ 0, start });
+	pq.push({ 0, 0 });
 	while (!pq.empty()) {
 		int cost = -pq.top().first;
 		int cur = pq.top().second;
 		pq.pop();
-		if (dist[cur] < cost) continue;
+		// if (dist[cur] < cost) continue;
 		for (int i = 0; i < map[cur].size(); i++) {
-			int ncost = map[cur][i].second;
+			int ncost = map[cur][i].second + cost;
 			int next = map[cur][i].first;
-			if (dist[next] >= cost + ncost) {
-				dist[next] = cost + ncost;
-				pq.push({ -dist[next],next });
+			if (ncost > d) continue;
+			if (dist[next] >= ncost) {
+				dist[next] = ncost;
+				pq.push({ -ncost,next });
 			}
 		}
 	}
@@ -33,7 +34,7 @@ int main() {
 	}
 	for (int i = 0; i <= d; i++) dist[i] = INF;
 	for (int i = 0; i < d; i++) map[i].push_back({ i + 1,1 });
-	dijk(0);
+	dijk();
 	
 	cout << dist[d];
 
