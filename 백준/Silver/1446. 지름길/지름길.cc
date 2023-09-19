@@ -1,11 +1,11 @@
 #include <iostream>
 #include <vector>
 #include <queue>
-#define INF 10001;
+#define INF 10001
 using namespace std;
 int n, d, a, b, c;
-int dist[10001];
-vector <pair<int, int>> map[10001];
+int dist[INF];
+vector <pair<int, int>> map[INF];
 void dijk(int start) {
 	priority_queue < pair<int, int> > pq;
 	pq.push({ 0, start });
@@ -13,7 +13,6 @@ void dijk(int start) {
 		int cost = -pq.top().first;
 		int cur = pq.top().second;
 		pq.pop();
-
 		if (dist[cur] < cost) continue;
 		for (int i = 0; i < map[cur].size(); i++) {
 			int ncost = map[cur][i].second;
@@ -32,8 +31,8 @@ int main() {
 		cin >> a >> b >> c;
 		map[a].push_back({ b,c });
 	}
-	for (int i = 0; i <= d; i++) dist[i] = i;
-	for (int i = 0; i <= d; i++) map[i].push_back({ i + 1,1 });
+	for (int i = 0; i <= d; i++) dist[i] = INF;
+	for (int i = 0; i < d; i++) map[i].push_back({ i + 1,1 });
 	dijk(0);
 	
 	cout << dist[d];
