@@ -13,7 +13,7 @@ int main() {
 			if (i % 2 == 0) {
 				dp[i] = min(dp[i / 2] + 1, dp[i - 1] + 1);
 				int j = i - 1;
-				while (j > 0 && dp[i] < dp[j] - 1) {
+				while (dp[i] < dp[j] - 1) {
 					dp[j] = dp[j + 1] + 1;
 					j--;
 				}
