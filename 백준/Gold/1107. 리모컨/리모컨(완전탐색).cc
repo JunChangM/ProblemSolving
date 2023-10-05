@@ -1,4 +1,4 @@
-// 메모리: 2208 KB, 시간: 684 ms
+// 메모리: 2020 KB, 시간: 24 ms
 #include <iostream>
 #include <string>
 using namespace std;
