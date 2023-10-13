@@ -1,13 +1,15 @@
 #include <iostream>
-#include <algorithm>
 using namespace std;
-int n, k, c,ans;
+int n, k, c;
 int p[100001];
 int num[100001];
 int main() {
 	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 	cin >> n >> k;
-	if (n >= k) cout << n - k << "\n" << 1;
+	if (n >= k) {
+		p[k] = n - k;
+		num[k] = 1;
+	}
 	else { // n < k
 		for (int i = n; i >= 0; i--) {
 			p[i] = n - i;
@@ -40,13 +42,9 @@ int main() {
 			else{
 				p[i] = p[i - 1] + 1;
 				num[i] = num[i - 1];
-				
 			}
-			// cout << i << ' ' << p[i] << ' ' << num[i] << "\n";
-		}
-		cout << p[k] << "\n" << num[k];
+		}	
 	}
+	cout << p[k] << "\n" << num[k];
 	return 0;
 }
-
-// 0 3 -> 3 2
