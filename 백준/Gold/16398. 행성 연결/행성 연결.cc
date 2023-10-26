@@ -24,6 +24,7 @@ int main() {
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
 			cin >> d;
+			if (i == j) continue;
 			map.push_back({ d, { i,j } });
 		}
 		
