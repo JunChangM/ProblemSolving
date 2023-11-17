@@ -1,23 +1,15 @@
 #include <iostream>
 #include <vector>
+#include <set>
 using namespace std;
 int input[5][5];
 int dx[4] = { 1,-1,0,0 };
 int dy[4] = { 0,0,1,-1 };
-vector<int> answer;
+vector<int> a;
 
-void bfs(int x, int y, int depth, int s) {
+void dfs(int x, int y, int depth, int s) {
 	if (depth == 6) {
-		int flag = 1;
-		for (int i = 0; i < answer.size(); i++) {
-			if (s == answer[i]) {
-				flag = 0;
-				break;
-			}
-		}
-		if (flag == 1) {
-			answer.push_back(s);
-		}
+		a.push_back(s);
 		return;
 	}
 
@@ -25,7 +17,7 @@ void bfs(int x, int y, int depth, int s) {
 		int nx = x + dx[i];
 		int ny = y + dy[i];
 		if (nx < 0 || ny < 0 || nx >= 5 || ny >= 5) continue;
-		bfs(nx, ny, depth + 1, s * 10 + input[nx][ny]);
+		dfs(nx, ny, depth + 1, s * 10 + input[nx][ny]);
 	}
 }
 
@@ -39,10 +31,11 @@ int main() {
 	}
 	for (int i = 0; i < 5; i++) {
 		for (int j = 0; j < 5; j++) {
-			bfs(i, j, 1, input[i][j]);
+			dfs(i, j, 1, input[i][j]);
 		}
 	}
-	cout << answer.size();
+	set<int> s(a.begin(), a.end());
+	cout << s.size();
 	return 0;
 
 }
