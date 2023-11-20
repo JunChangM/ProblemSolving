@@ -7,7 +7,6 @@ int n, u, v;
 vector<int> map[N];
 bool visited[N];
 int dp[N][2]; // 0 : 해당 노드가 어답터 일때, 1: 아닐때 의 어답터의 수
-
 void find(int x) {
 	visited[x] = true;
 	dp[x][0] = 1; // 해당 노드가 어답터 일때, 어답터의 수
@@ -19,11 +18,9 @@ void find(int x) {
 		dp[x][0] += min(dp[child][1], dp[child][0]); // 내가 어답터 일 경우, 자식이 어답터 일 때, 아닐 때 중 최소값을 더한다.
 	}
 }
-
-// 트리를 활용한 DP
 int main()
 {
-	ios_base::sync_with_stdio(0); // cin.tie(0); cout.tie(0);
+	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 	cin >> n;
 	for (int i = 0; i < n - 1; i++) {
 		cin >> u >> v;
