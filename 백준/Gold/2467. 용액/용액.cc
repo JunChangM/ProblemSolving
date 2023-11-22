@@ -49,11 +49,9 @@ int main()
 					x = pos;
 					y = neg;
 					ans = abs(pos + neg);
-				}
-
+                }
 				if (pos + neg < 0) {
-					temp = j + 1;
-					if (temp == negative.size()) temp--;
+					temp = j;
 					break;
 				}
 			}
