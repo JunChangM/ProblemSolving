@@ -17,7 +17,7 @@ void bfs(int start) {
 		q.pop();
 		for (int i = 0; i < map[x].size(); i++) {
 			int y = map[x][i];
-			if (visited[y] == -1 || visited[y] > visited[x] + 1) {
+			if (visited[y] == -1) {
 				visited[y] = visited[x] + 1;
 				q.push(y);
 			}
@@ -40,7 +40,6 @@ int main() {
 
 		int sum = 0;
 		for (int j = 1; j <= n; j++) {
-
 			sum += visited[j];
 		}
 
