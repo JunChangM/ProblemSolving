@@ -1,28 +1,29 @@
 #include <iostream>
+#include <string>
 using namespace std;
 int n, s;
-char arr[1000001];
+string str;
 
 int main() {
 	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 	cin >> n >> s;
-	for (int i = 0; i < s; i++) {
-		cin >> arr[i];
-	}
+	cin >> str;
+
 	int ans = 0;
 	for (int i = 0; i < s; i++) {
-		bool flag = 1;
-		if (arr[i] == 'I') {
-			for (int j = 1; j <= 2 * n; j+=2) {
-				if (i + j + 1 >= s || arr[i + j] != 'O' || arr[i + j + 1] != 'I') {
-					flag = 0;
-					break;
-				}
+		int k = 0;
+		if (str[i] == 'O') continue;
+
+		while (str[i + 1] == 'O' && str[i + 2] == 'I'){
+			k++;
+			if (k == n) {
+				k--; 
+				ans++; // find
 			}
-			if (flag == 1) {
-				ans++;
-			}
+			i += 2; // skip O
 		}
+		k = 0;
+		
 	}
 	cout << ans;
 	return 0;
