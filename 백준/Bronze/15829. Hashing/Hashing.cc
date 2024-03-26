@@ -2,23 +2,23 @@
 #include <cmath>
 using namespace std;
 
-string str;
+string s;
 char a; 
-long long M = 1234567891; // 서로소 M
+long long M = 1234567891; 
 int main(){
     int L;
-    long long hash = 0;
+    long long h = 0;
     scanf("%d",&L);
-    cin >> str;
+    cin >> s;
 
     long long r = 1;
     for(int i=0; i<L; i++){
-        a = str[i];
-        hash = (hash + (a - 96) * r) % M; // (a * r) mod M
-        r = (r * 31) % M; // pow(r, n); -> 값이 너무 커지니까 계속 mod M 해준다.
+        a = s[i];
+        h = (h + (a - 96) * r) % M; // (a * r) mod M
+        r = (r * 31) % M;
     }
 
-    printf("%lld\n", hash);
+    printf("%lld\n", h);
 
     return 0;
 }
